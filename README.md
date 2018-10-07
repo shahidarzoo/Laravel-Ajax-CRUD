@@ -60,7 +60,14 @@ public function rules()
     }
 
 ```
-# html
+# Display message
+```html
+<div>
+    <div class="add-blog-success alert alert-success  alert-dismissible" style="display: none;">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close" style="color: black;">&times;</a>
+</div>
+```
+# Html
 ```html
 <div class="form-group">
 <label class="col-sm-2"></label>
@@ -77,10 +84,9 @@ class="img-md file-img1 model-add-image" src="{{asset('public/admin/')}}/images/
 </div>
 
 ```
-# file upload
+# Image Preview code on form
 ```js
-<script type="text/javascript">
-    //image upload
+
      var fileSelect = document.getElementById("fileSelect"),
       fileElem = document.getElementById("fileElem"),
       fileList = document.getElementById("fileList");
