@@ -1,13 +1,47 @@
 # Laravel Ajax CRUD
-
 ```php
-#Routes
-	Route::resource('/blog', 'Admin\BlogController');
-	Route::get('/delete-blog/{id}', 'Admin\BlogController@destroy');
-	Route::get('/edit-blog/{id}', 'Admin\BlogController@edit');
-	Route::put('/update-blog/{id}', 'Admin\BlogController@update')
+public function store(BlogRequest $request)
+{
+try 
+{
+    $file = $request->file('blog_image');
+    $fileName = time().'.'.$file->getClientOriginalExtension();
+    $destinationPath = public_path('admin/images/blogs');
+    if (!is_dir($destinationPath)) {
+	mkdir($destinationPath, 0777, true);
+    }
+    $file->move($destinationPath,$fileName);
+    $blog_image = '/admin/images/blogs/'.$fileName;
+
+    $blog = Blog::create([
+	'title' => $request->title,
+	'description' => $request->description,
+	'image' => $blog_image,
+    ]);
+    return ['status'=>true, 'message'=>'New blog added successfully!'];
+} 
+catch (\Exception $e) 
+{
+   return ['status'=>true, 'message'=>$e->getMessage()];
+}
+}
+```
+# html
+```html
+<div class="form-group">
+<label class="col-sm-2"></label>
+<div class="col-sm-10">
+<img alt="Event Image" style="width: 250px; height: 163px;" class="img-md file-img1 model-add-image" src="{{asset('public/admin/')}}/images/404-Not-Found.jpg">
+<p class="text-muted"></p>
+<input type="file" id="fileElem" name="blog_image" class="file1" multiple accept="image/*" style="display:none" onchange="handleFile(this.files)">
+<button type="button" id="fileSelect" class="btn btn-primary mar-ver btn-img-file">Blog Image..</button>
+<div id="image-error" class="btn-img-file validation-error"></div>
+</div>
+
+</div>
 
 ```
+# file upload
 ```js
 <script type="text/javascript">
     //image upload
@@ -33,7 +67,9 @@
         reader.readAsDataURL(file);
     }
 }
-
+```
+# insert
+```js
     #store
     $('#create-blog-submit').submit(function(e) {
     e.preventDefault();
@@ -88,7 +124,7 @@
   });
 </script>
 ```
-#Edit and update
+# Edit and update
 ```js
 <script type="text/javascript">
 $('body').on('click',".edit_blog",function()
