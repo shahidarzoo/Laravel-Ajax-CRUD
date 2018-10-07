@@ -246,3 +246,57 @@ $('body').on('click',".edit_blog",function()
   });
 </script>
 ```
+# Seeder
+```php
+<?php
+
+use Illuminate\Database\Seeder;
+
+class DatabaseSeeder extends Seeder
+{
+	
+    public function run()
+    {
+		
+    	$user = \DB::table('users')->insert([
+            'name' => 'Super Admin',
+            'email' =>'admin@gmail.com',
+            'password' => bcrypt('123456'),
+        ]);
+
+        //profile
+        \DB::table('contacts')->insert([
+            'phone' => '7493274932',
+            'email' => 'abc@gmail.com',
+            'address' => 'Hunza',
+            'location' => 'Hunza',
+            'country' => 'Pakistan',
+            'latitude' => '759375349',
+            'longitude' => '7239749327',
+        ]);
+        //project
+        \DB::table('abouts')->insert([
+            'title' => 'Saleem',
+            'description' => 'lorum ipsum doller',
+            'image' => '/admin/images/team/1538723992.jpg',
+            'location' => 'Hunza',
+        ]);
+        \DB::table('services')->insert([
+            'title' => 'tour',
+            'service_image' => '/admin/images/service/service_1.jpg',
+            'description' => 'lorum ipsum doller',
+        ]);
+        \DB::table('team_members')->insert([
+            'name' => 'Saleem',
+            'profile_pic' => '/admin/images/team/1538723992.jpg',
+            'designation' => 'Developer',
+            'phone_no' => '122233445',
+            'bio' => 'Null',
+        ]);
+    }
+	
+}
+
+
+
+```
