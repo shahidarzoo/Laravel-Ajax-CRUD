@@ -26,14 +26,50 @@ catch (\Exception $e)
 }
 }
 ```
+# Request
+```php
+
+public function rules()
+    {
+        switch (request()->method()){
+            case 'POST' :
+                return [
+                    'blog_image' => 'required|mimes:jpeg,png,jpg,gif,svg',
+                    'title' => 'required',
+                    'description' => 'required',
+                ];
+                break;
+            case 'PUT' :
+                return [
+                    'title' => 'required',
+                    'description' => 'required',
+                ];
+                break;
+            default :
+                return [];
+        }
+    }
+
+    public function messages()
+    {
+        return [
+            'blog_image.required' => 'Select image',
+            'title.required' => 'Title is required',
+            'description.required' => 'Description is required',
+        ];
+    }
+
+```
 # html
 ```html
 <div class="form-group">
 <label class="col-sm-2"></label>
 <div class="col-sm-10">
-<img alt="Event Image" style="width: 250px; height: 163px;" class="img-md file-img1 model-add-image" src="{{asset('public/admin/')}}/images/404-Not-Found.jpg">
+<img alt="Event Image" style="width: 250px; height: 163px;" 
+class="img-md file-img1 model-add-image" src="{{asset('public/admin/')}}/images/404-Not-Found.jpg">
 <p class="text-muted"></p>
-<input type="file" id="fileElem" name="blog_image" class="file1" multiple accept="image/*" style="display:none" onchange="handleFile(this.files)">
+<input type="file" id="fileElem" name="blog_image" class="file1" multiple accept="image/*" 
+ style="display:none" onchange="handleFile(this.files)">
 <button type="button" id="fileSelect" class="btn btn-primary mar-ver btn-img-file">Blog Image..</button>
 <div id="image-error" class="btn-img-file validation-error"></div>
 </div>
