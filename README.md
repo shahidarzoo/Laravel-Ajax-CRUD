@@ -110,7 +110,7 @@ class="img-md file-img1 model-add-image" src="{{asset('public/admin/')}}/images/
     }
 }
 ```
-# insert
+# Insert
 ```js
     #store
     $('#create-blog-submit').submit(function(e) {
