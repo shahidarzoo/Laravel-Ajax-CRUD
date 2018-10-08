@@ -300,3 +300,23 @@ class DatabaseSeeder extends Seeder
 
 
 ```
+# Pass data to bootstrap model
+```php
+<a href="#" onclick="editClassTimeTable('{{$timetable->id}}','{{$timetable->description}}','{{$timetable->type}}','{{$timetable->teacher_id}}','{{$timetable->subject_id}}','{{$timetable->date}}','{{$timetable->day}}','{{$timetable->start_time}}','{{$timetable->end_time}}')" data-target="#update-class-timetable" data-toggle="modal" class="btn btn-icon demo-pli-pen-5 icon-lg add-tooltip" data-original-title="Edit Post" data-container="body"></a>
+
+```
+# js function editClassTimeTable()
+```js
+function editClassTimeTable(id, description, type, teacher_id, subject_id, date, day, start_time, end_time)
+  {
+    $("#id").val(id);
+    $("#description").val(description);
+    $('#type').val(type).change();
+    $('#subject_id').val(subject_id).change();
+    $('#teacher_id').val(teacher_id).change();
+    $('#edit-class-time-table').val(date);
+    $('#class-timetable-day').val(day).change();
+    $('.class_start_time').val(start_time);
+    $('.class_end_time').val(end_time);
+}
+```
