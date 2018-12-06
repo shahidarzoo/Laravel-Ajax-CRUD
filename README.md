@@ -1,4 +1,4 @@
-# Laravel Ajax CRUD AND FOOTER VIEW COUNT
+# Laravel Ajax Crud Aan Footer View Count
 VIEWS
 ```php
 
