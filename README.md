@@ -1,4 +1,15 @@
-# Laravel Ajax CRUD
+# Laravel Ajax CRUD AND FOOTER VIEW COUNT
+VIEWS
+```php
+
+<div class="col-sm-5">
+        <div class="dataTables_info" id="example1_info" role="status" aria-live="polite">
+          Showing {{($employee->currentpage()-1)*$employee->perpage()+1}} to {{$employee->currentpage()*$employee->perpage()}}
+    of  {{$employee->total()}} entries
+        </div>
+    </div>
+
+```
 ```php
 public function store(BlogRequest $request)
 {
