@@ -1,4 +1,30 @@
-# Laravel Ajax Crud Aan Footer View Count
+# Laravel Ajax Crud and Footer View Count
+### Add More in Laravel
+```php
+
+public function addMorePost(Request $request)
+    {
+        $rules = [];
+        foreach($request->input('name') as $key => $value) {
+            $rules["name.{$key}"] = 'required';
+            $rules["color.{$key}"] = 'required';
+        }
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->passes()) 
+        {
+            foreach($request->input('name') as $key => $value) 
+            {
+                Tags::create([
+                	'name'=>$value,
+                	'color'=>$value,
+                ]);
+            }
+            return response()->json(['success'=>'done']);
+        }
+        return response()->json(['error'=>$validator->errors()->all()]);
+    }
+```
+
 VIEWS
 ```php
 
