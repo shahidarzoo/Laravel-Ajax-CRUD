@@ -41,8 +41,10 @@ public function addMorePost(Request $request)
          <form name="add_name" id="add_name">  
 
 
-            <div class="alert alert-danger print-error-msg" style="display:none">
+           <div class="alert alert-danger print-error-msg alert-dismissible" style="display:none">
+              <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
             <ul></ul>
+
             </div>
 
 
