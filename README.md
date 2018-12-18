@@ -1,4 +1,4 @@
-# Laravel Ajax Crud and Footer View Count
+# Laravel Ajax Crud and Footer View Count and Add More
 ### Add More in Laravel
 [https://itsolutionstuff.com/post/laravel-dynamically-add-or-remove-input-fields-using-jqueryexample.html](https://itsolutionstuff.com/post/laravel-dynamically-add-or-remove-input-fields-using-jqueryexample.html)
 
