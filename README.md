@@ -136,7 +136,116 @@ public function addMorePost(Request $request)
     });  
 </script>
 ```
+### Add More in php
+```php
+CREATE TABLE IF NOT EXISTS `tagslist` (
 
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+
+  PRIMARY KEY (`id`)
+
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=24 ;
+### index.php
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PHP - Dynamically Add or Remove input fields using JQuery</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />  
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+
+<div class="container">
+    <h2 align="center">PHP - Dynamically Add or Remove input fields using JQuery</h2>  
+    <div class="form-group">
+         <form name="add_name" id="add_name">
+
+
+            <div class="table-responsive">  
+                <table class="table table-bordered" id="dynamic_field">  
+                    <tr>  
+                        <td><input type="text" name="name[]" placeholder="Enter your Name" class="form-control name_list" required="" /></td>  
+                        <td><button type="button" name="add" id="add" class="btn btn-success">Add More</button></td>  
+                    </tr>  
+                </table>  
+                <input type="button" name="submit" id="submit" class="btn btn-info" value="Submit" />  
+            </div>
+
+
+         </form>  
+    </div> 
+</div>
+
+
+<script type="text/javascript">
+    $(document).ready(function(){      
+      var postURL = "/addmore.php";
+      var i=1;  
+
+
+      $('#add').click(function(){  
+           i++;  
+           $('#dynamic_field').append('<tr id="row'+i+'" class="dynamic-added"><td><input type="text" name="name[]" placeholder="Enter your Name" class="form-control name_list" required /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');  
+      });
+
+
+      $(document).on('click', '.btn_remove', function(){  
+           var button_id = $(this).attr("id");   
+           $('#row'+button_id+'').remove();  
+      });  
+
+
+      $('#submit').click(function(){            
+           $.ajax({  
+                url:postURL,  
+                method:"POST",  
+                data:$('#add_name').serialize(),
+                type:'json',
+                success:function(data)  
+                {
+                  	i=1;
+                  	$('.dynamic-added').remove();
+                  	$('#add_name')[0].reset();
+    				        alert('Record Inserted Successfully.');
+                }  
+           });  
+      });
+
+
+    });  
+</script>
+</body>
+</html>
+
+#### addmore.php
+<?php
+
+
+	define (DB_USER, "root");
+	define (DB_PASSWORD, "root");
+	define (DB_DATABASE, "test");
+	define (DB_HOST, "localhost");
+	$mysqli = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE);
+
+
+	if(!empty($_POST["name"])){
+
+
+		foreach ($_POST["name"] as $key => $value) {
+			$sql = "INSERT INTO tagslist(name) VALUES ('".$value."')";
+			$mysqli->query($sql);
+		}
+		echo json_encode(['success'=>'Names Inserted successfully.']);
+	}
+
+
+?>
+
+```
 ### View Counts Footers
 ```php
 
