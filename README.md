@@ -137,6 +137,7 @@ public function addMorePost(Request $request)
 </script>
 ```
 ### Add More in php
+[https://itsolutionstuff.com/post/php-dynamically-add-remove-input-fields-using-jquery-ajax-example-with-demoexample.html](https://itsolutionstuff.com/post/php-dynamically-add-remove-input-fields-using-jquery-ajax-example-with-demoexample.html)
 ```php
 CREATE TABLE IF NOT EXISTS `tagslist` (
 
